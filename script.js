@@ -1,4 +1,3 @@
-// const {flatten, updateMatrix} = require('./batteries.js');
 
 const getBoard = () => {
   const cell1 = document.querySelector('#cell-1');
@@ -38,6 +37,7 @@ const cell6 = document.querySelector('#cell-6');
 const cell7 = document.querySelector('#cell-7');
 const cell8 = document.querySelector('#cell-8');
 const cell9 = document.querySelector('#cell-9');
+const winnerMessage = document.querySelector('#winner-message');
 
 const allCells = [cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9];
 
@@ -90,15 +90,22 @@ const gameLoop = (piece) => {
   // check for winner or tie
   // if win or tie print message and return
   if (winner(updatedBoard) === 'x') {
-    console.log(`X won!`);
+    // console.log(`X won!`);
+    // alert(`X won!`);
+
+    winnerMessage.textContent = `X won!`;
     allCells.forEach(cell => cell.onclick = null);
     return; 
   } else if (winner(updatedBoard) === 'o') {
-    console.log(`O won!`);
+    // console.log(`O won!`);
+    // alert(`O won!`);
+    winnerMessage.textContent = `O won!`;
     allCells.forEach(cell => cell.onclick = null);
     return;
   } else if (winner(updatedBoard) === null && fullBoard(updatedBoard) === true) {
-    console.log(`Tied!`);
+    // console.log(`Tied!`);
+    // alert(`Tied!`);
+    winnerMessage.textContent = `Tied!`;
     allCells.forEach(cell => cell.onclick = null);
     return;
   } else {
