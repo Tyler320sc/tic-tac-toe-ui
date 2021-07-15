@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Tic Tac Toe</title>
-</head>
-<body>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="styles.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+        rel="stylesheet"
+      />
+      <title>Tic Tac Toe</title>
+    </head>
+    <body>
+      <div class="parent-container">
+        <div class="board-msg-btn">
+          <pre><span id="cell-1">&nbsp;</span>|<span id="cell-2">&nbsp;</span>|<span id="cell-3">&nbsp;</span></pre>
+          <pre>-+-+-</pre>
+          <pre><span id="cell-4">&nbsp;</span>|<span id="cell-5">&nbsp;</span>|<span id="cell-6">&nbsp;</span></pre>
+          <pre>-+-+-</pre>
+          <pre><span id="cell-7">&nbsp;</span>|<span id="cell-8">&nbsp;</span>|<span id="cell-9">&nbsp;</span></pre>
+        </div>
+        <!-- who won message -->
+        <p id="winner-message" class="board-msg-btn"></p>
 
-  <pre><span id="cell-1">&nbsp;</span>|<span id="cell-2">&nbsp;</span>|<span id="cell-3">&nbsp;</span></pre>
-  <pre>-+-+-</pre>
-  <pre><span id="cell-4">&nbsp;</span>|<span id="cell-5">&nbsp;</span>|<span id="cell-6">&nbsp;</span></pre> 
-  <pre>-+-+-</pre>
-  <pre><span id="cell-7">&nbsp;</span>|<span id="cell-8">&nbsp;</span>|<span id="cell-9">&nbsp;</span></pre>
+        <!-- restart button  -->
+        <!-- <a href="#" id="my-button">Restart</a> -->
 
-  <!-- who won message -->
-  <p id="winner-message"></p>
-
-  <!-- restart button  -->
-  <a href="#" class="myButton">Restart</a>
-  <!-- 2nd board -->
-  <div class="game-board">
-    <div class="box">X</div>
-    <div class="box">O</div>
-    <div class="box">X</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+        <input id="my-button" type="button" value="Reload Page" />
+        <!-- </div> -->
+        <!-- 2nd board -->
+        <div class="game-board">
+          <div id="box-1" class="box"></div>
+          <div id="box-2" class="box"></div>
+          <div id="box-3" class="box"></div>
+          <div id="box-4" class="box"></div>
+          <div id="box-5" class="box"></div>
+          <div id="box-6" class="box"></div>
+          <div id="box-7" class="box"></div>
+          <div id="box-8" class="box"></div>
+          <div id="box-9" class="box"></div>
+        </div>
+      </div>
+      <script src="script.js"></script>
+    </body>
+  </html>
 </html>
