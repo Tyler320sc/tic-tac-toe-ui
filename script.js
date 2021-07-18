@@ -30,6 +30,35 @@ const getBoard = () => {
   ];
 };
 
+const getBoard2 = () => {
+  const box1 = document.querySelector("#box-1");
+  const box2 = document.querySelector("#box-2");
+  const box3 = document.querySelector("#box-3");
+  const box4 = document.querySelector("#box-4");
+  const box5 = document.querySelector("#box-5");
+  const box6 = document.querySelector("#box-6");
+  const box7 = document.querySelector("#box-7");
+  const box8 = document.querySelector("#box-8");
+  const box9 = document.querySelector("#box-9");
+
+  const map = (val) => {
+    if (val === " " || val.charCodeAt(0) === 160) {
+      return null;
+    } else if (val === "X") {
+      return "x";
+    } else if (val === "O") {
+      return "o";
+    } else {
+      return val;
+    }
+  };
+  return [
+    [map(box1.textContent), map(box2.textContent), map(box3.textContent)],
+    [map(box4.textContent), map(box5.textContent), map(box6.textContent)],
+    [map(box7.textContent), map(box8.textContent), map(box9.textContent)],
+  ];
+};
+
 const cell1 = document.querySelector("#cell-1");
 const cell2 = document.querySelector("#cell-2");
 const cell3 = document.querySelector("#cell-3");
@@ -174,12 +203,16 @@ const fullBoard = (board) => !flatten(board).includes(null);
 const gameLoop = (piece) => {
   allCells
     .filter((cell) => cell.textContent !== "x" && cell.textContent !== "o")
+    // returns new arr with els that aren't x's or o's, then the arr
+    // of emtpy cells are interated over and onlick is enabled for the 'empty' cells
     .forEach(
       (cell) =>
         (cell.onclick = () => {
           cell.textContent = piece;
+          // after the piece is set the onlclick is disabled
           cell.onclick = null;
           const updatedBoard = getBoard();
+          console.log(getBoard()); // debugging
 
           if (winner(updatedBoard) === "x") {
             winnerMessage.textContent = `X won!`;
@@ -206,32 +239,36 @@ const gameLoop = (piece) => {
 gameLoop("x");
 
 const gameLoop2 = (piece) => {
-  allBoxes.forEach(
-    (box) =>
-      (box.onclick = () => {
-        box.textContent = piece;
-        const updatedBoard = getBoard();
+  allBoxes
+    .filter((box) => box.textContent !== "x" && box.textContent !== "o")
+    .forEach(
+      (box) =>
+        (box.onclick = () => {
+          box.textContent = piece;
+          box.onclick = null;
+          const updatedBoard = getBoard2();
+          console.log(getBoard2()); // debugging
 
-        if (winner(updatedBoard) === "x") {
-          winnerMessage.textContent = `X won!`;
-          allBoxes.forEach((box) => (box.onclick = null));
-          return;
-        } else if (winner(updatedBoard) === "o") {
-          winnerMessage.textContent = `O won!`;
-          allBoxes.forEach((box) => (box.onclick = null));
-          return;
-        } else if (
-          winner(updatedBoard) === null &&
-          fullBoard(updatedBoard) === true
-        ) {
-          winnerMessage.textContent = `Tied!`;
-          allBoxes.forEach((box) => (box.onclick = null));
-          return;
-        } else {
-          const nextPiece = piece === "x" ? "o" : "x";
-          return gameLoop2(nextPiece);
-        }
-      })
-  );
+          if (winner(updatedBoard) === "x") {
+            winnerMessage.textContent = `X won!`;
+            allBoxes.forEach((box) => (box.onclick = null));
+            return;
+          } else if (winner(updatedBoard) === "o") {
+            winnerMessage.textContent = `O won!`;
+            allBoxes.forEach((box) => (box.onclick = null));
+            return;
+          } else if (
+            winner(updatedBoard) === null &&
+            fullBoard(updatedBoard) === true
+          ) {
+            winnerMessage.textContent = `Tied!`;
+            allBoxes.forEach((box) => (box.onclick = null));
+            return;
+          } else {
+            const nextPiece = piece === "x" ? "o" : "x";
+            return gameLoop2(nextPiece);
+          }
+        })
+    );
 };
 gameLoop2("x");
